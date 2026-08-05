@@ -105,6 +105,8 @@ class ItemPenjualanController extends Controller
      */
     public function update(Request $request, ItemPenjualan $itempenjualan)
     {
+        $this->authorize('update', $itempenjualan);
+
         $request->validate([
             'quantity' => 'required|integer|min:1'
         ]);

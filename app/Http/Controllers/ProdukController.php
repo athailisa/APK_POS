@@ -125,18 +125,24 @@ class ProdukController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $produk = Produk::findOrFail($id);
+public function destroy(string $id)
+{
+    $produk = Produk::findOrFail($id);
 
-        $this->authorize('delete', $produk);
+    $this->authorize('delete', $produk);
 
-        if ($produk->foto && Storage::disk('public')->exists($produk->foto)) {
-            Storage::disk('public')->delete($produk->foto);
-        }
-
-        $produk->delete();
-
-        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
+    // 🔍 Cek dulu: apakah produk ini sudah pernah muncul di transaksi penjualan?
+    if ($produk->itemPenjualan()->exists()) {
+        return redirect()->route('produk.index')
+            ->with('errors', 'Produk tidak bisa dihapus karena sudah memiliki riwayat penjualan.');
     }
+
+    if ($produk->foto && Storage::disk('public')->exists($produk->foto)) {
+        Storage::disk('public')->delete($produk->foto);
+    }
+
+    $produk->delete();
+
+    return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
+}
 }

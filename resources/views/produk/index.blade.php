@@ -3,11 +3,25 @@
 @section('title', 'Produk') 
 
 @section('content') 
+
 @include('layouts.navbar') 
 
 <h1>Halaman Produk</h1> 
 
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('errors'))
+    <div class="alert alert-danger">
+        {{ session('errors') }}
+    </div>
+@endif
+
 @can('create', App\Models\Produk::class) 
+
 <div class="mb-3"> 
     <a href="{{ route('produk.create') }}" class="btn btn-primary">create</a> 
 </div> 

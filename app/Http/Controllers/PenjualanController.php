@@ -85,6 +85,8 @@ public function index(SearchRequest $request)
      */
     public function show(Penjualan $penjualan)
     {
+        $this->authorize('view', $penjualan);
+
         $penjualan->load('itemPenjualan.produk', 'user');
         return view('penjualan.show', compact('penjualan'));
     }
@@ -95,6 +97,8 @@ public function index(SearchRequest $request)
      */
     public function edit(Penjualan $penjualan)
     {
+        $this->authorize('update', $penjualan); 
+
         $sale = $penjualan;
 
         abort_if($sale->status === 'COMPLETED', 403);
@@ -111,6 +115,8 @@ public function index(SearchRequest $request)
      */
     public function update(Request $request, Penjualan $penjualan)
     {
+        $this->authorize('update', $penjualan);
+        
         $request->validate([
             'payment_method' => 'required|in:CASH,QRIS'
         ]);
