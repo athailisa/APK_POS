@@ -57,8 +57,7 @@ class ProdukController extends Controller
         $data['nama'] = $dataReq['name'];
         $data['harga_beli'] = $dataReq['purchase_price'];
         $data['harga_jual'] = $dataReq['selling_price'];
-        $data['stok'] = $dataReq['stock'] ?? true;
-
+        $data['stok'] = $dataReq['stock'] ?? 0;
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('products', 'public');
         }

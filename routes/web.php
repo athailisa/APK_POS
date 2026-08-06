@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('/produk', ProdukController::class);
         Route::put('/penjualan/{penjualan}/checkout', [PenjualanController::class, 'update'])->name('penjualan.checkout');
         Route::resource('/penjualan', PenjualanController::class);
-        Route::put('/itempenjualan/{itempenjualan}', [ItemPenjualanController::class, 'update'])->name('itempenjualan.update');
         Route::resource('/itempenjualan', ItemPenjualanController::class);
     });
 });

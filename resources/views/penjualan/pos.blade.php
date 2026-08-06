@@ -29,23 +29,24 @@
                         @csrf 
                         <input type="hidden" name="product_id" value="{{ $product->id }}"> 
                         
-                        {{-- 🌟 PERBAIKAN: Tombol nama produk dimunculkan kembali tanpa elemen <img> --}}
-                        <div class="col-7"> 
-                            <button type="button" class="btn btn-outline-primary w-100 text-start p-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}"> 
-                                <div class="text-start text-truncate"> 
-                                    <div class="fw-semibold text-truncate" title="{{ $product->nama }}">{{ $product->nama }}</div> 
-                                    <small class="text-muted">Rp {{ number_format($product->harga_jual) }}</small> 
-                                </div> 
-                            </button> 
-                        </div> 
-                        
+                    <div class="col-7"> 
+                        <button type="button" class="btn btn-outline-primary w-100 text-start p-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}"> 
+                            <div class="text-start text-truncate"> 
+                                <div class="fw-semibold text-truncate" title="{{ $product->nama }}">{{ $product->nama }}</div> 
+                                <small class="text-muted">Rp {{ number_format($product->harga_jual) }}</small>
+                                <br>
+                                <span class="badge {{ $product->stok > 10 ? 'bg-success' : ($product->stok > 0 ? 'bg-warning text-dark' : 'bg-danger') }}">
+                                    Stok: {{ $product->stok }}
+                                </span>
+                            </div> 
+                        </button> 
+                    </div>
                         <div class="col-3"> 
                             <input type="number" name="quantity" value="1" min="1" class="form-control {{ $sale->status === 'COMPLETED' ? 'readonly' : '' }}"> 
-                        </div> 
-                        
-                        <div class="col-2"> 
-                            <button type="submit" class="btn btn-primary w-100 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">+</button> 
-                        </div> 
+                        </div>                  
+                    <div class="col-2"> 
+                        <button type="submit" class="btn btn-primary w-100 {{ ($sale->status === 'COMPLETED' || $product->stok <= 0) ? 'disabled' : '' }}">+</button> 
+                    </div>
                     </form> 
                 @endforeach 
             </div> {{-- Tutup card-body produk --}} 
