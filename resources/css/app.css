@@ -11,3 +11,84 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* ============ TEMA: WARM MINIMALIST (Cafe) ============ */
+
+:root {
+    --bs-primary: #8B5E3C;
+    --bs-primary-rgb: 139, 94, 60;
+    --bs-body-bg: #FDF8F3;
+    --bs-body-font-family: 'Poppins', sans-serif;
+    --bs-border-radius: 0.75rem;
+    --bs-border-radius-sm: 0.5rem;
+    --bs-border-radius-lg: 1rem;
+}
+
+body {
+    background-color: var(--bs-body-bg);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 2px solid #F0E4D8;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #8B5E3C !important;
+    letter-spacing: 0.5px;
+}
+
+.nav-link.active {
+    color: #8B5E3C !important;
+    font-weight: 600;
+}
+
+/* Tombol utama */
+.btn-primary {
+    background-color: #8B5E3C;
+    border-color: #8B5E3C;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #6F4A2F;
+    border-color: #6F4A2F;
+}
+
+.btn-outline-primary {
+    color: #8B5E3C;
+    border-color: #8B5E3C;
+}
+.btn-outline-primary:hover {
+    background-color: #8B5E3C;
+    border-color: #8B5E3C;
+}
+
+/* Card lebih lembut */
+.card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(139, 94, 60, 0.08);
+}
+
+/* Badge stok yang lebih soft */
+.badge.bg-success { background-color: #7C9473 !important; }
+.badge.bg-warning { background-color: #E8B04B !important; }
+.badge.bg-danger  { background-color: #C1583F !important; }
+
+/* Tabel lebih rapi */
+.table thead {
+    background-color: #F5EBE0;
+}
+
+/* Grid produk POS */
+.product-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: default;
+}
+.product-card:not(.opacity-50):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(139, 94, 60, 0.15);
+}

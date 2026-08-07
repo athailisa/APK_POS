@@ -15,48 +15,63 @@
 
 <div class="row"> 
     {{-- ==================== PRODUK ==================== --}} 
-    <div class="col-md-6"> 
-        <div class="card"> 
-            <div class="card-body" style="max-height:70vh; overflow:auto"> 
+  <div class="col-md-6"> 
+    <div class="card">
+        <div class="card-header bg-white fw-semibold">
+            <i class="bi bi-shop me-1"></i> Daftar Produk
+        </div>
+        <div class="card-body" style="max-height:70vh; overflow:auto">
                 <div class="mb-3"> 
                     <form method="GET" action="{{ $mode === 'edit' ? route('penjualan.edit', $sale->id) : route('penjualan.create') }}"> 
                         <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari produk..." onkeyup="this.form.submit()"> 
                     </form> 
                 </div> 
                 
-                @foreach($products as $product) 
-                    <form method="POST" action="{{ route('itempenjualan.store') }}" class="row mb-2 align-items-center"> 
-                        @csrf 
-                        <input type="hidden" name="product_id" value="{{ $product->id }}"> 
-                        
-                    <div class="col-7"> 
-                        <button type="button" class="btn btn-outline-primary w-100 text-start p-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}"> 
-                            <div class="text-start text-truncate"> 
-                                <div class="fw-semibold text-truncate" title="{{ $product->nama }}">{{ $product->nama }}</div> 
-                                <small class="text-muted">Rp {{ number_format($product->harga_jual) }}</small>
-                                <br>
-                                <span class="badge {{ $product->stok > 10 ? 'bg-success' : ($product->stok > 0 ? 'bg-warning text-dark' : 'bg-danger') }}">
-                                    Stok: {{ $product->stok }}
-                                </span>
-                            </div> 
-                        </button> 
+            <div class="row g-3">
+                @foreach($products as $product)
+                    <div class="col-6">
+                        <form method="POST" action="{{ route('itempenjualan.store') }}" class="h-100">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                            <div class="card h-100 product-card {{ ($sale->status === 'COMPLETED' || $product->stok <= 0) ? 'opacity-50' : '' }}">
+                                @if ($product->foto)
+                                    <img src="{{ asset('storage/' . $product->foto) }}" class="card-img-top" style="height:100px; object-fit:cover;" alt="{{ $product->nama }}">
+                                @else
+                                    <div class="d-flex align-items-center justify-content-center bg-light" style="height:100px;">
+                                        <i class="bi bi-cup-hot fs-1 text-muted"></i>
+                                    </div>
+                                @endif
+
+                                <div class="card-body p-2">
+                                    <div class="fw-semibold text-truncate small" title="{{ $product->nama }}">{{ $product->nama }}</div>
+                                    <div class="text-muted small mb-1">Rp {{ number_format($product->harga_jual) }}</div>
+
+                                    <span class="badge {{ $product->stok > 10 ? 'bg-success' : ($product->stok > 0 ? 'bg-warning text-dark' : 'bg-danger') }} mb-2">
+                                        Stok: {{ $product->stok }}
+                                    </span>
+
+                                    <div class="d-flex gap-1">
+                                        <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm" {{ $sale->status === 'COMPLETED' ? 'readonly' : '' }}>
+                                        <button type="submit" class="btn btn-primary btn-sm" {{ ($sale->status === 'COMPLETED' || $product->stok <= 0) ? 'disabled' : '' }}>+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                        <div class="col-3"> 
-                            <input type="number" name="quantity" value="1" min="1" class="form-control {{ $sale->status === 'COMPLETED' ? 'readonly' : '' }}"> 
-                        </div>                  
-                    <div class="col-2"> 
-                        <button type="submit" class="btn btn-primary w-100 {{ ($sale->status === 'COMPLETED' || $product->stok <= 0) ? 'disabled' : '' }}">+</button> 
-                    </div>
-                    </form> 
-                @endforeach 
+                @endforeach
+            </div>
             </div> {{-- Tutup card-body produk --}} 
         </div> {{-- Tutup card produk --}} 
     </div> {{-- Tutup col-md-6 produk --}} 
 
-    {{-- ==================== KERANJANG ==================== --}} 
+{{-- ==================== KERANJANG ==================== --}} 
     <div class="col-md-6"> 
-        <div class="card"> 
-            <table class="table table-bordered mb-0 w-100"> 
+        <div class="card">
+            <div class="card-header bg-white fw-semibold">
+                <i class="bi bi-cart3 me-1"></i> Keranjang Belanja
+            </div>
+            <table class="table table-bordered mb-0 w-100">
                 <thead> 
                     <tr> 
                         <th>Produk</th> 
