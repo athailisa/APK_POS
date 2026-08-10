@@ -37,7 +37,8 @@
             <tr> 
                 <th scope="col">#</th> 
                 <th scope="col">Tanggal Transaksi</th> 
-                <th scope="col">Kasir</th> 
+                <th scope="col">Kasir</th>
+                <th scope="col">Produk</th> 
                 <th scope="col">Total Pembayaran</th> 
                 <th scope="col">Metode Pembayaran</th> 
                 <th scope="col">Status</th> 
@@ -50,8 +51,14 @@
                 <th scope="row">{{ ($sales->firstItem() + $loop->index) }}</th> 
                 
                 <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i:s') }}</td>                 
-                <td>{{ $sale->user->name }}</td>                 
-                <td>Rp. {{ number_format($sale->total_pembayaran) }}</td> 
+                <td>{{ $sale->user->name }}</td>
+                <td>
+                    @foreach($sale->itemPenjualan as $item)
+                        {{ $item->produk->nama }} ({{ $item->kuantitas }})@if(!$loop->last), @endif
+                    @endforeach
+                </td>
+                </td>
+                <td>Rp. {{ number_format($sale->total_pembayaran) }}</td>
                 <td>{{ $sale->metode_pembayaran }}</td> 
                 <td>{{ $sale->status }}</td> 
                 
@@ -78,7 +85,7 @@
             </tr> 
             @empty 
             <tr> 
-                <td colspan="7" class="text-center py-4">Data Tidak Ditemukan</td> 
+                <td colspan="8" class="text-center py-4">Data Tidak Ditemukan</td> 
             </tr> 
             @endforelse 
         </tbody> 

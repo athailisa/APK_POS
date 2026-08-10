@@ -40,6 +40,23 @@
     @enderror 
 </div> 
 
+<div class="mb-2">
+    <label>Jenis Produk <span class="text-danger">*</span></label><br>
+    <select name="jenis_id" class="form-select @error('jenis_id') is-invalid @enderror">
+        <option value="">-- Pilih Jenis --</option>
+        @foreach($jenisList as $jenis)
+            <option value="{{ $jenis->id }}" {{ old('jenis_id', $produk->jenis_id ?? '') == $jenis->id ? 'selected' : '' }}>
+                {{ $jenis->nama }}
+            </option>
+        @endforeach
+    </select>
+    @error('jenis_id')
+    <div class="invalid-feedback d-block">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
+
 <div> 
     <label>Harga Beli</label><br> 
     <!-- name dikembalikan ke 'purchase_price' sesuai isi Controller -->

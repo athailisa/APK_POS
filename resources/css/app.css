@@ -92,3 +92,14 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 14px rgba(139, 94, 60, 0.15);
 }
+
+/* Halaman Login */
+.login-wrapper {
+    min-height: 80vh;
+}
+
+.login-card {
+    border: none;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 30px rgba(139, 94, 60, 0.12);
+}

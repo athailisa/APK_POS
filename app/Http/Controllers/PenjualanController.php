@@ -20,6 +20,7 @@ public function index(SearchRequest $request)
     $keyword = $request->input('search');
 
     $sales = Penjualan::query()
+        ->with('itemPenjualan.produk')
 
     ->when($user->role->name === 'kasir', function ($query) use ($user) {
         $query->where('user_id', $user->id);

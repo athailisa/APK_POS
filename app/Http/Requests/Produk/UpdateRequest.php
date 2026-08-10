@@ -22,31 +22,34 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'name' => 'required|string|max:255',
-            'purchase_price' => 'required|integer|min:0',
-            'selling_price' => 'required|integer|min:0',
-            'stock' => 'required|integer|min:0',
-        ];
+    return [
+        'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'jenis_id' => 'required|exists:jenis,id',
+        'name' => 'required|string|max:255',
+        'purchase_price' => 'required|integer|min:0',
+        'selling_price' => 'required|integer|min:0',
+        'stock' => 'required|integer|min:0',
+    ];
     }
 
     public function messages(): array
-  {
-    return [
-        'foto.image'             => 'File yang diupload harus gambar.',
-        'foto.mimes'             => 'Extensi gambar harus JPG, JPEG, PNG.',
-        'foto.max'               => 'Maksimal ukuran gambar 2MB.',
-        'name.required'          => 'Nama Wajib diisi.',
-        'email.email'            => 'Format email tidak valid.',
-        'purchase_price.required'=> 'purchase price wajib diisi.',
-        'purchase_price.integer' => 'purchase price harus diisi bilangan bulat.',
-        'selling_price.required' => 'selling price wajib diisi.',
-        'selling_price.integer'  => 'selling price harus diisi bilangan bulat.',
-        'stock.required'         => 'Stock wajib diisi.',
-        'stock.integer'          => 'Stock harus diisi angka.',
-    ];
-  }
+    {
+        return [
+            'foto.image'             => 'File yang diupload harus gambar.',
+            'foto.mimes'             => 'Extensi gambar harus JPG, JPEG, PNG.',
+            'foto.max'               => 'Maksimal ukuran gambar 2MB.',
+            'jenis_id.required'      => 'Jenis produk wajib dipilih.',
+            'jenis_id.exists'        => 'Jenis produk yang dipilih tidak valid.',
+            'name.required'          => 'Nama Wajib diisi.',
+            'email.email'            => 'Format email tidak valid.',
+            'purchase_price.required'=> 'purchase price wajib diisi.',
+            'purchase_price.integer' => 'purchase price harus diisi bilangan bulat.',
+            'selling_price.required' => 'selling price wajib diisi.',
+            'selling_price.integer'  => 'selling price harus diisi bilangan bulat.',
+            'stock.required'         => 'Stock wajib diisi.',
+            'stock.integer'          => 'Stock harus diisi angka.',
+        ];
+    }
 
 
 }

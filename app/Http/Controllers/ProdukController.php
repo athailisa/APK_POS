@@ -42,7 +42,9 @@ class ProdukController extends Controller
     {
         $this->authorize('create', Produk::class);
 
-        return view('produk.create');
+        $jenisList = \App\Models\Jenis::orderBy('nama')->get();
+
+        return view('produk.create', compact('jenisList'));
     }
 
     /**
@@ -54,10 +56,12 @@ class ProdukController extends Controller
 
         $dataReq = $request->validated();
         $data['user_id'] = Auth::id();
+        $data['jenis_id'] = $dataReq['jenis_id'];
         $data['nama'] = $dataReq['name'];
         $data['harga_beli'] = $dataReq['purchase_price'];
         $data['harga_jual'] = $dataReq['selling_price'];
         $data['stok'] = $dataReq['stock'] ?? 0;
+
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('products', 'public');
         }
@@ -66,7 +70,6 @@ class ProdukController extends Controller
 
         return redirect()->route('produk.index')->with('success', 'Product created successfully.');
     }
-
     /**
      * Display the specified resource.
      */
@@ -88,7 +91,9 @@ class ProdukController extends Controller
 
         $this->authorize('update', $produk);
 
-        return view('produk.edit', compact('produk'));
+        $jenisList = \App\Models\Jenis::orderBy('nama')->get();
+
+        return view('produk.edit', compact('produk', 'jenisList'));
     }
 
     /**
@@ -103,6 +108,7 @@ class ProdukController extends Controller
         $dataReq = $request->validated();
         $data = [
             'user_id' => Auth::id(),
+            'jenis_id' => $dataReq['jenis_id'],
             'nama' => $dataReq['name'],
             'harga_beli' => $dataReq['purchase_price'],
             'harga_jual' => $dataReq['selling_price'],
