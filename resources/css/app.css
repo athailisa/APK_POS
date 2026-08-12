@@ -12,75 +12,145 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-/* ============ TEMA: WARM MINIMALIST (Cafe) ============ */
+/* ============ TEMA: CAFE WARM NEUTRAL ============ */
 
 :root {
-    --bs-primary: #8B5E3C;
-    --bs-primary-rgb: 139, 94, 60;
-    --bs-body-bg: #FDF8F3;
+    --bs-primary: #A0522D;
+    --bs-primary-rgb: 160, 82, 45;
     --bs-body-font-family: 'Poppins', sans-serif;
-    --bs-border-radius: 0.75rem;
-    --bs-border-radius-sm: 0.5rem;
-    --bs-border-radius-lg: 1rem;
+    --bs-border-radius: 0.6rem;
+    --bs-border-radius-sm: 0.4rem;
+    --bs-border-radius-lg: 0.85rem;
+
+    --dbk-accent: #A0522D;
+    --dbk-accent-dark: #7A3E22;
+    --dbk-cream: #F7F1EA;
+    --dbk-gold: #C68642;
+    --dbk-sage: #6B8F5C;
+    --dbk-dark: #33261F;
 }
 
 body {
-    background-color: var(--bs-body-bg);
+    background-color: #FAF6F1;
     font-family: 'Poppins', sans-serif;
+    color: var(--dbk-dark);
+    font-size: 1rem;
 }
 
-/* Navbar */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--dbk-dark);
+}
+
+/* Navbar full-width, sticky */
 .navbar {
     background-color: #ffffff !important;
-    border-bottom: 2px solid #F0E4D8;
+    border-bottom: 1px solid #EDE3D9;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.navbar .container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .navbar-brand {
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: #8B5E3C !important;
+    font-size: 1.4rem;
+    color: var(--dbk-accent-dark) !important;
     letter-spacing: 0.5px;
 }
 
+.nav-link {
+    font-weight: 500;
+    color: var(--dbk-dark) !important;
+    margin: 0 4px;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--dbk-cream);
+}
+
 .nav-link.active {
-    color: #8B5E3C !important;
+    color: var(--dbk-accent-dark) !important;
+    background-color: var(--dbk-cream);
     font-weight: 600;
 }
 
-/* Tombol utama */
+/* Tombol utama - warna solid, kontras jelas */
 .btn-primary {
-    background-color: #8B5E3C;
-    border-color: #8B5E3C;
+    background-color: var(--dbk-accent);
+    border-color: var(--dbk-accent);
 }
 .btn-primary:hover,
 .btn-primary:focus {
-    background-color: #6F4A2F;
-    border-color: #6F4A2F;
+    background-color: var(--dbk-accent-dark);
+    border-color: var(--dbk-accent-dark);
 }
 
 .btn-outline-primary {
-    color: #8B5E3C;
-    border-color: #8B5E3C;
+    color: var(--dbk-accent-dark);
+    border-color: var(--dbk-accent);
 }
 .btn-outline-primary:hover {
-    background-color: #8B5E3C;
-    border-color: #8B5E3C;
+    background-color: var(--dbk-accent);
+    border-color: var(--dbk-accent);
+    color: #fff;
 }
 
-/* Card lebih lembut */
+/* Card */
 .card {
-    border: none;
-    border-radius: 1rem;
-    box-shadow: 0 2px 12px rgba(139, 94, 60, 0.08);
+    border: 1px solid #EDE3D9;
+    border-radius: 0.85rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 6px rgba(51, 38, 31, 0.05);
 }
 
-/* Badge stok yang lebih soft */
-.badge.bg-success { background-color: #7C9473 !important; }
-.badge.bg-warning { background-color: #E8B04B !important; }
-.badge.bg-danger  { background-color: #C1583F !important; }
+.card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #EDE3D9;
+    font-size: 1.05rem;
+}
 
-/* Tabel lebih rapi */
-.table thead {
-    background-color: #F5EBE0;
+/* Badge - warna solid, kontras aman */
+.badge.bg-success { background-color: var(--dbk-sage) !important; }
+.badge.bg-warning { background-color: var(--dbk-gold) !important; color: #fff !important; }
+.badge.bg-danger  { background-color: #B03A2E !important; }
+.badge.bg-secondary { background-color: #D8C7B8 !important; color: var(--dbk-dark) !important; }
+.badge.bg-dark { background-color: var(--dbk-dark) !important; }
+
+/* ===== Tabel: font lebih besar & lega, sesuai request ===== */
+.table {
+    font-size: 1.05rem;
+}
+.table th, .table td {
+    padding: 1rem 1.1rem;
+    vertical-align: middle;
+}
+.table thead th {
+    background-color: var(--dbk-cream);
+    color: var(--dbk-dark);
+    font-weight: 600;
+    font-size: 1rem;
+}
+.table-sm th, .table-sm td {
+    padding: 0.75rem 0.9rem;
+    font-size: 1rem;
+}
+
+/* ===== Badge: diperbesar & lebih tegas, termasuk badge stok ===== */
+.badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.45em 0.85em;
+    border-radius: 0.5rem;
 }
 
 /* Grid produk POS */
@@ -90,7 +160,7 @@ body {
 }
 .product-card:not(.opacity-50):hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(139, 94, 60, 0.15);
+    box-shadow: 0 6px 16px rgba(160, 82, 45, 0.15);
 }
 
 /* Halaman Login */
@@ -99,7 +169,94 @@ body {
 }
 
 .login-card {
-    border: none;
-    border-radius: 1.25rem;
-    box-shadow: 0 8px 30px rgba(139, 94, 60, 0.12);
+    border: 1px solid #EDE3D9;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 8px 28px rgba(51, 38, 31, 0.08);
+}
+
+/* Dashboard stat cards */
+.stat-card {
+    border: 1px solid #EDE3D9;
+    border-left: 4px solid var(--dbk-accent);
+    border-radius: 0.75rem;
+    background-color: #ffffff;
+}
+
+/* ============ TOMBOL SELARAS ============ */
+
+.btn {
+    font-weight: 500;
+    border-radius: var(--bs-border-radius);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-sm {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+}
+
+.btn-success {
+    background-color: var(--dbk-sage);
+    border-color: var(--dbk-sage);
+}
+.btn-success:hover,
+.btn-success:focus {
+    background-color: #567749;
+    border-color: #567749;
+}
+
+.btn-warning {
+    background-color: var(--dbk-gold);
+    border-color: var(--dbk-gold);
+    color: #fff;
+}
+.btn-warning:hover,
+.btn-warning:focus {
+    background-color: #A66C2F;
+    border-color: #A66C2F;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #B03A2E;
+    border-color: #B03A2E;
+}
+.btn-danger:hover,
+.btn-danger:focus {
+    background-color: #8F2E24;
+    border-color: #8F2E24;
+}
+
+.btn-outline-danger {
+    color: #B03A2E;
+    border-color: #B03A2E;
+}
+.btn-outline-danger:hover {
+    background-color: #B03A2E;
+    border-color: #B03A2E;
+}
+
+.btn-secondary {
+    background-color: #8C7A6B;
+    border-color: #8C7A6B;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #705F52;
+    border-color: #705F52;
+}
+
+/* Jarak antar tombol aksi di tabel, biar lega */
+.table .d-flex.gap-1 {
+    gap: 0.5rem !important;
 }

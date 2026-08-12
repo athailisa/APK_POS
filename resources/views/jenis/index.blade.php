@@ -3,14 +3,13 @@
 @section('title', 'Jenis Produk')
 
 @section('content')
-@include('layouts.navbar')
 
 <h1>Halaman Jenis Produk</h1>
 
 @if (session('errors'))
-    <div class="alert alert-danger">
-        {{ session('errors') }}
-    </div>
+<div class="alert alert-danger">
+    {{ session('errors') }}
+</div>
 @endif
 
 @can('create', App\Models\Jenis::class)
@@ -36,15 +35,17 @@
                 <td class="align-middle">
                     <div class="d-flex align-items-center justify-content-center gap-1 py-1">
                         @can('update', $jenis)
-                        <a href="{{ route('jenis.edit', $jenis->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ route('jenis.edit', $jenis->id) }}" class="btn btn-sm btn-warning"><i
+                                class="bi bi-pencil"></i> Edit</a>
                         @endcan
 
                         @can('delete', $jenis)
                         <form action="{{ route('jenis.destroy', $jenis->id) }}" method="POST" class="d-inline m-0">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus jenis ini?')">
-                                Hapus
+                            <button class="btn btn-sm btn-danger"
+                                onclick="return confirm('Apakah anda yakin akan menghapus jenis ini?')">
+                                <i class="bi bi-trash"></i> Hapus
                             </button>
                         </form>
                         @endcan
@@ -53,7 +54,9 @@
             </tr>
             @empty
             <tr>
-                <td colspan="3"><h1 class="text-center">Data tidak tersedia.</h1></td>
+                <td colspan="3">
+                    <h1 class="text-center">Data tidak tersedia.</h1>
+                </td>
             </tr>
             @endforelse
         </tbody>

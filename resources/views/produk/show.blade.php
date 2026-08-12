@@ -1,44 +1,56 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 
-@section('title', 'Detail Produk') 
+@section('title', 'Detail Produk')
 
-@section('content') 
-@include('layouts.navbar') 
+@section('content')
 
-<div class="container mt-4"> 
-    <h1 class="mb-4">Detail Produk</h1> 
-    
-    <div class="mb-3"> 
-        <a href="{{ route('produk.index') }}" class="btn btn-secondary">Kembali</a> 
-    </div> 
+<div class="mb-4">
+    <h3 class="fw-bold mb-0">Detail Produk</h3>
+    <a href="{{ route('produk.index') }}" class="text-decoration-none">
+        <i class="bi bi-arrow-left"></i> Kembali ke daftar produk
+    </a>
+</div>
 
-    <!-- Tampilan detail berbentuk Card Bootstrap sesuai tugas tambahan gurumu --> 
-    <div class="card" style="max-width: 540px;"> 
-        <div class="row g-0"> 
-            
-            <!-- Sisi Kiri: Kotak Gambar Kecil Bawaan Modul --> 
-            <div class="col-md-4 d-flex align-items-center justify-content-center bg-light p-2"> 
-                <!-- PERBAIKAN: Membuka akses folder storage dan menambah pengkondisian jika foto kosong -->
-                @if ($produk->foto)
-                    <img src="{{ asset('storage/' . $produk->foto) }}" width="80" height="80" class="img-thumbnail" alt="Foto Mawar"> 
-                @else
-                    <span class="text-muted small">No Photo</span>
+<div class="card" style="max-width: 600px;">
+    <div class="row g-0">
+
+        <div class="col-md-5 d-flex align-items-center justify-content-center bg-light p-3">
+            @if ($produk->foto)
+            <img src="{{ asset('storage/' . $produk->foto) }}" class="img-fluid rounded"
+                style="max-height: 220px; object-fit: cover;" alt="{{ $produk->nama }}">
+            @else
+            <div class="text-center text-muted">
+                <i class="bi bi-cup-hot" style="font-size: 3rem;"></i>
+                <div class="small mt-1">Belum ada foto</div>
+            </div>
+            @endif
+        </div>
+
+        <div class="col-md-7">
+            <div class="card-body">
+                <h4 class="fw-bold" style="color:var(--dbk-accent-dark);">{{ $produk->nama }}</h4> @if ($produk->jenis)
+                <span class="badge bg-secondary mb-2">{{ $produk->jenis->nama }}</span>
                 @endif
-            </div> 
+                <hr>
+                <div class="mb-2">
+                    <span class="text-muted small d-block">Harga Beli</span>
+                    <span class="fw-semibold">Rp {{ number_format($produk->harga_beli) }}</span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-muted small d-block">Harga Jual</span>
+                    <span class="fw-semibold">Rp {{ number_format($produk->harga_jual) }}</span>
+                </div>
+                <div class="mb-3">
+                    <span class="text-muted small d-block">Stok Tersedia</span>
+                    <span
+                        class="badge {{ $produk->stok > 10 ? 'bg-success' : ($produk->stok > 0 ? 'bg-warning text-dark' : 'bg-danger') }}">
+                        {{ $produk->stok }}
+                    </span>
+                </div>
+                <p class="text-muted small mb-0">Petugas Input: {{ $produk->user->name ?? '-' }}</p>
+            </div>
+        </div>
 
-            <!-- Sisi Kanan: Informasi Lengkap Teks Produk --> 
-            <div class="col-md-8"> 
-                <div class="card-body"> 
-                    <h5 class="card-title fw-bold text-primary">{{ $produk->nama }}</h5> 
-                    <hr> 
-                    <p class="card-text"><strong>Harga Beli:</strong> {{ $produk->harga_beli }}</p> 
-                    <p class="card-text"><strong>Harga Jual:</strong> {{ $produk->harga_jual }}</p> 
-                    <p class="card-text"><strong>Stok Tersedia:</strong> {{ $produk->stok }}</p> 
-                    <p class="card-text"><small class="text-muted">Petugas Input: {{ $produk->user->name ?? '-' }}</small></p> 
-                </div> 
-            </div> 
-            
-        </div> 
-    </div> 
-</div> 
+    </div>
+</div>
 @endsection
