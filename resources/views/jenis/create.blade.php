@@ -4,10 +4,20 @@
 
 @section('content')
 
-<h4>Tambah Jenis</h4>
+<div class="mb-4">
+    <h3 class="fw-bold mb-0">Tambah Jenis</h3>
+    <a href="{{ route('jenis.index') }}" class="text-decoration-none">
+        <i class="bi bi-arrow-left"></i> Kembali ke daftar jenis
+    </a>
+</div>
 
-<form action="{{ route('jenis.store') }}" method="POST">
-    @csrf
-    @include('jenis._form')
-</form>
+<div class="card" style="max-width: 500px;">
+    <div class="card-body p-4">
+        <form action="{{ route('jenis.store') }}" method="POST">
+            @csrf
+            @include('jenis._form')
+        </form>
+    </div>
+</div>
+
 @endsection

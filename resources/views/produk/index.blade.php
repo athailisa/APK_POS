@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1 class="mb-4">Halaman Produk</h1>
+<h1 class="mb-4"><i class="bi bi-box-seam"></i> Halaman Produk</h1>
 
 @if (session('errors'))
 <div class="alert alert-danger">
@@ -104,8 +104,12 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="9" class="text-center text-muted py-4">Data tidak tersedia.</td>
-                    </tr>
+                    <td colspan="9">
+                        <div class="empty-state">
+                            <i class="bi bi-inbox"></i>
+                            Belum ada produk yang ditambahkan.
+                        </div>
+                    </td>                    </tr>
                     @endforelse
                 </tbody>
             </table>

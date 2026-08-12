@@ -260,3 +260,142 @@ h1, h2, h3, h4, h5, h6 {
 .table .d-flex.gap-1 {
     gap: 0.5rem !important;
 }
+
+/* Alert senada tema */
+.alert-success {
+    background-color: #EAF1E4;
+    border: 1px solid #C6D9B8;
+    color: #4A5E3D;
+    border-radius: 0.6rem;
+}
+
+.alert-danger {
+    background-color: #F7E3DF;
+    border: 1px solid #E3B3A8;
+    color: #8F3A2C;
+    border-radius: 0.6rem;
+}
+
+/* ===== Focus state form - senada tema, bukan biru default ===== */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--dbk-accent);
+    box-shadow: 0 0 0 0.2rem rgba(160, 82, 45, 0.15);
+}
+
+.form-check-input:checked {
+    background-color: var(--dbk-accent);
+    border-color: var(--dbk-accent);
+}
+
+.form-check-input:focus {
+    border-color: var(--dbk-accent);
+    box-shadow: 0 0 0 0.2rem rgba(160, 82, 45, 0.15);
+}
+
+/* ===== Pagination - senada tema ===== */
+.pagination .page-link {
+    color: var(--dbk-accent-dark);
+    border: 1px solid #EDE3D9;
+    border-radius: 0.5rem;
+    margin: 0 3px;
+    padding: 0.5rem 0.9rem;
+}
+
+.pagination .page-link:hover {
+    background-color: var(--dbk-cream);
+    color: var(--dbk-accent-dark);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--dbk-accent);
+    border-color: var(--dbk-accent);
+    color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #B8ACA0;
+    background-color: transparent;
+}
+
+/* User menu di navbar */
+.user-menu-btn {
+    border: 1px solid #EDE3D9;
+    border-radius: 2rem;
+    padding: 0.35rem 0.9rem 0.35rem 0.35rem;
+    background-color: #fff;
+}
+.user-menu-btn:hover {
+    background-color: var(--dbk-cream);
+}
+.user-menu-btn::after {
+    margin-left: 0.5rem;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--dbk-accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.dropdown-menu {
+    border: 1px solid #EDE3D9;
+    border-radius: 0.75rem;
+    box-shadow: 0 6px 20px rgba(51, 38, 31, 0.1);
+}
+
+/* Empty state */
+.empty-state {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: #A89A8C;
+}
+.empty-state i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Badge stok nempel di foto produk (POS page) */
+.stock-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Kontrol qty + tombol nyatu jadi 1 kesatuan */
+.qty-stepper {
+    display: flex;
+    border: 1px solid #EDE3D9;
+    border-radius: 0.6rem;
+    overflow: hidden;
+}
+.qty-stepper .form-control {
+    border: none;
+    border-radius: 0;
+    text-align: center;
+}
+.qty-stepper .form-control:focus {
+    box-shadow: none;
+    background-color: var(--dbk-cream);
+}
+.qty-stepper .btn {
+    border-radius: 0;
+    border: none;
+    width: 42px;
+    flex-shrink: 0;
+}
+
+.product-card .card-body {
+    display: flex;
+    flex-direction: column;
+}

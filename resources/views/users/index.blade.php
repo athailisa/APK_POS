@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h3 class="fw-bold mb-4">Halaman Users</h3>
+<h3 class="fw-bold mb-4"><i class="bi bi-people"></i> Halaman Users</h3>
 
 @if (session('errors'))
 <div class="alert alert-danger">
@@ -68,7 +68,12 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="text-center text-muted py-4">Data tidak tersedia.</td>
+                    <td colspan="5">
+                        <div class="empty-state">
+                            <i class="bi bi-inbox"></i>
+                            Tidak ada user ditemukan.
+                        </div>
+                    </td>                
                     </tr>
                     @endforelse
                 </tbody>

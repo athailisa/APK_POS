@@ -3,12 +3,23 @@
 @section('title', 'Edit Produk')
 
 @section('content')
-<h4>Edit Produk</h4>
 
-<form action="{{ route('produk.update', $produk) }}"
-      method="POST"
-      enctype="multipart/form-data">
-      @method('PUT')
-@include('produk._form')
-</form>
+<div class="mb-4">
+    <h3 class="fw-bold mb-0">Edit Produk</h3>
+    <a href="{{ route('produk.index') }}" class="text-decoration-none">
+        <i class="bi bi-arrow-left"></i> Kembali ke daftar produk
+    </a>
+</div>
+
+<div class="card" style="max-width: 650px;">
+    <div class="card-body p-4">
+        <form action="{{ route('produk.update', $produk) }}"
+              method="POST"
+              enctype="multipart/form-data">
+              @method('PUT')
+        @include('produk._form')
+        </form>
+    </div>
+</div>
+
 @endsection

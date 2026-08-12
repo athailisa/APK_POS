@@ -10,7 +10,7 @@
 </div>
 @endif
 
-<h1>Halaman Penjualan</h1>
+<h1><i class="bi bi-receipt"></i> Halaman Penjualan</h1>
 
 <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
 
@@ -81,7 +81,12 @@
             </tr>
             @empty
             <tr>
-                <td colspan="8" class="text-center py-4">Data Tidak Ditemukan</td>
+            <td colspan="8">
+                <div class="empty-state">
+                    <i class="bi bi-inbox"></i>
+                    Belum ada transaksi penjualan.
+                </div>
+            </td>        
             </tr>
             @endforelse
         </tbody>

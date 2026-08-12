@@ -35,25 +35,28 @@
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                             <div class="card h-100 product-card {{ ($sale->status === 'COMPLETED' || $product->stok <= 0) ? 'opacity-50' : '' }}">
-                                @if ($product->foto)
-                                    <img src="{{ asset('storage/' . $product->foto) }}" class="card-img-top" style="height:100px; object-fit:cover;" alt="{{ $product->nama }}">
-                                @else
-                                    <div class="d-flex align-items-center justify-content-center bg-light" style="height:100px;">
-                                        <i class="bi bi-cup-hot fs-1 text-muted"></i>
-                                    </div>
-                                @endif
-
-                                <div class="card-body p-2">
-                                    <div class="fw-semibold text-truncate small" title="{{ $product->nama }}">{{ $product->nama }}</div>
-                                    <div class="text-muted small mb-1">Rp {{ number_format($product->harga_jual) }}</div>
-
-                                    <span class="badge {{ $product->stok > 10 ? 'bg-success' : ($product->stok > 0 ? 'bg-warning text-dark' : 'bg-danger') }} mb-2">
-                                        Stok: {{ $product->stok }}
+                                <div class="position-relative">
+                                    @if ($product->foto)
+                                        <img src="{{ asset('storage/' . $product->foto) }}" class="card-img-top" style="height:170px; object-fit:contain; background-color:#F7F1EA; padding:8px;" alt="{{ $product->nama }}">
+                                    @else
+                                        <div class="d-flex align-items-center justify-content-center bg-light" style="height:170px;">
+                                            <i class="bi bi-cup-hot text-muted" style="font-size: 2.8rem;"></i>
+                                        </div>
+                                    @endif
+                                    <span class="badge stock-badge {{ $product->stok > 10 ? 'bg-success' : ($product->stok > 0 ? 'bg-warning text-dark' : 'bg-danger') }}">
+                                        {{ $product->stok }} tersisa
                                     </span>
+                                </div>
 
-                                    <div class="d-flex gap-1">
+                                <div class="card-body p-3">
+                                    <div class="fw-semibold text-truncate mb-1" title="{{ $product->nama }}">{{ $product->nama }}</div>
+                                    <div class="mb-3" style="color:var(--dbk-accent-dark); font-weight:600;">Rp {{ number_format($product->harga_jual) }}</div>
+
+                                    <div class="qty-stepper">
                                         <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm" {{ $sale->status === 'COMPLETED' ? 'readonly' : '' }}>
-                                        <button type="submit" class="btn btn-primary btn-sm" {{ ($sale->status === 'COMPLETED' || $product->stok <= 0) ? 'disabled' : '' }}>+</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" {{ ($sale->status === 'COMPLETED' || $product->stok <= 0) ? 'disabled' : '' }}>
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Halaman Jenis Produk</h1>
+<h1><i class="bi bi-tags"></i> Halaman Jenis Produk</h1>
 
 @if (session('errors'))
 <div class="alert alert-danger">
@@ -54,9 +54,12 @@
             </tr>
             @empty
             <tr>
-                <td colspan="3">
-                    <h1 class="text-center">Data tidak tersedia.</h1>
-                </td>
+            <td colspan="3">
+                <div class="empty-state">
+                    <i class="bi bi-inbox"></i>
+                    Belum ada jenis produk yang ditambahkan.
+                </div>
+            </td>
             </tr>
             @endforelse
         </tbody>
