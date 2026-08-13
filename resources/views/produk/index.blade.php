@@ -52,10 +52,12 @@
 
                         <td>
                             @if ($product->foto)
-                            <img src="{{ asset('storage/' . $product->foto) }}" width="40" height="40"
-                                class="img-thumbnail" style="object-fit:cover;" alt="Foto">
+                            <img src="{{ asset('storage/' . $product->foto) }}" width="60" height="60"
+                                class="product-thumb" style="object-fit:cover;" alt="Foto">
                             @else
-                            <span class="text-muted small">No Photo</span>
+                            <div class="product-thumb d-flex align-items-center justify-content-center bg-light">
+                                <i class="bi bi-cup-hot text-muted"></i>
+                            </div>
                             @endif
                         </td>
 
@@ -77,15 +79,19 @@
                         </td>
                         <td class="text-muted small">{{ $product->user->name }}</td>
                         <td class="align-middle">
-                            <div class="d-flex align-items-center gap-1 py-1">
+                            <div class="d-flex align-items-center gap-2 py-1">
                                 @can('view', $product)
-                                <a href="{{ route('produk.show', $product->id) }}"
-                                    class="btn btn-sm btn-primary text-white"><i class="bi bi-eye"></i> Detail</a>
+                                <a href="{{ route('produk.show', $product->id) }}" class="btn-icon btn-icon-primary"
+                                    title="Detail" data-bs-toggle="tooltip">
+                                    <i class="bi bi-eye"></i>
+                                </a>
                                 @endcan
 
                                 @can('update', $product)
-                                <a href="{{ route('produk.edit', $product->id) }}" class="btn btn-sm btn-warning"><i
-                                        class="bi bi-pencil"></i> Edit</a>
+                                <a href="{{ route('produk.edit', $product->id) }}" class="btn-icon btn-icon-warning"
+                                    title="Edit" data-bs-toggle="tooltip">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
                                 @endcan
 
                                 @can('delete', $product)
@@ -93,9 +99,9 @@
                                     class="d-inline m-0">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-danger"
+                                    <button class="btn-icon btn-icon-danger" title="Hapus" data-bs-toggle="tooltip"
                                         onclick="return confirm('Apakah anda yakin akan menghapus produk ini?')">
-                                        <i class="bi bi-trash"></i> Hapus
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                                 @endcan
@@ -104,12 +110,13 @@
                     </tr>
                     @empty
                     <tr>
-                    <td colspan="9">
-                        <div class="empty-state">
-                            <i class="bi bi-inbox"></i>
-                            Belum ada produk yang ditambahkan.
-                        </div>
-                    </td>                    </tr>
+                        <td colspan="9">
+                            <div class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                Belum ada produk yang ditambahkan.
+                            </div>
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

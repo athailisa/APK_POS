@@ -482,3 +482,51 @@ h6 {
 .container.mx-auto > .mt-4 {
     animation: fadeInUp 0.35s ease;
 }
+
+/* Foto produk di tabel */
+.product-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.6rem;
+    border: 1px solid #EDE3D9;
+}
+
+/* Tombol aksi icon-only di tabel */
+.btn-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+    font-size: 0.95rem;
+}
+
+.btn-icon-primary {
+    background-color: #F3E8E2;
+    color: var(--dbk-accent-dark);
+}
+.btn-icon-primary:hover {
+    background-color: var(--dbk-accent);
+    color: #fff;
+}
+
+.btn-icon-warning {
+    background-color: #FCEFD9;
+    color: #A66C2F;
+}
+.btn-icon-warning:hover {
+    background-color: var(--dbk-gold);
+    color: #fff;
+}
+
+.btn-icon-danger {
+    background-color: #F7E3DF;
+    color: #B03A2E;
+}
+.btn-icon-danger:hover {
+    background-color: #B03A2E;
+    color: #fff;
+}
