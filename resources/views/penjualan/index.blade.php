@@ -15,12 +15,10 @@
 <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
 
 <form action="{{ route('penjualan.index') }}" method="GET" class="mb-3">
-    <div class="input-group">
+    <div class="input-group" style="max-width: 400px;">
+        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
         <input type="text" name="search" value="{{ request()->search }}" class="form-control"
-            placeholder="Search penjualan">
-        <button class="btn btn-outline-secondary" type="submit">
-            Search
-        </button>
+            placeholder="Cari nama kasir...">
     </div>
 </form>
 
@@ -52,8 +50,17 @@
                 </td>
                 </td>
                 <td>Rp. {{ number_format($sale->total_pembayaran) }}</td>
-                <td>{{ $sale->metode_pembayaran }}</td>
-                <td>{{ $sale->status }}</td>
+                <td>
+                    <span class="badge {{ $sale->metode_pembayaran === 'CASH' ? 'bg-secondary' : 'bg-dark' }}">
+                        <i class="bi {{ $sale->metode_pembayaran === 'CASH' ? 'bi-cash' : 'bi-qr-code' }}"></i>
+                        {{ $sale->metode_pembayaran }}
+                    </span>
+                </td>
+                <td>
+                    <span class="badge {{ $sale->status === 'COMPLETED' ? 'bg-success' : 'bg-warning text-dark' }}">
+                        {{ $sale->status === 'COMPLETED' ? 'Selesai' : 'Berlangsung' }}
+                    </span>
+                </td>
 
                 <td style="width: 240px; min-width: 240px;">
                     <div class="d-flex align-items-center gap-1">
@@ -81,12 +88,12 @@
             </tr>
             @empty
             <tr>
-            <td colspan="8">
-                <div class="empty-state">
-                    <i class="bi bi-inbox"></i>
-                    Belum ada transaksi penjualan.
-                </div>
-            </td>        
+                <td colspan="8">
+                    <div class="empty-state">
+                        <i class="bi bi-inbox"></i>
+                        Belum ada transaksi penjualan.
+                    </div>
+                </td>
             </tr>
             @endforelse
         </tbody>

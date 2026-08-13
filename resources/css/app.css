@@ -8,44 +8,51 @@
 @source "../**/*.vue";
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
 
 /* ============ TEMA: CAFE WARM NEUTRAL ============ */
 
 :root {
-    --bs-primary: #A0522D;
+    --bs-primary: #a0522d;
     --bs-primary-rgb: 160, 82, 45;
-    --bs-body-font-family: 'Poppins', sans-serif;
+    --bs-body-font-family: "Poppins", sans-serif;
     --bs-border-radius: 0.6rem;
     --bs-border-radius-sm: 0.4rem;
     --bs-border-radius-lg: 0.85rem;
 
-    --dbk-accent: #A0522D;
-    --dbk-accent-dark: #7A3E22;
-    --dbk-cream: #F7F1EA;
-    --dbk-gold: #C68642;
-    --dbk-sage: #6B8F5C;
-    --dbk-dark: #33261F;
+    --dbk-accent: #a0522d;
+    --dbk-accent-dark: #7a3e22;
+    --dbk-cream: #f7f1ea;
+    --dbk-gold: #c68642;
+    --dbk-sage: #6b8f5c;
+    --dbk-dark: #33261f;
 }
 
 body {
-    background-color: #FAF6F1;
-    font-family: 'Poppins', sans-serif;
+    background-color: #faf6f1;
+    font-family: "Poppins", sans-serif;
     color: var(--dbk-dark);
     font-size: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Playfair Display", serif;
     color: var(--dbk-dark);
 }
 
 /* Navbar full-width, sticky */
 .navbar {
     background-color: #ffffff !important;
-    border-bottom: 1px solid #EDE3D9;
+    border-bottom: 1px solid #ede3d9;
     padding-top: 0.85rem;
     padding-bottom: 0.85rem;
     position: sticky;
@@ -59,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 700;
     font-size: 1.4rem;
     color: var(--dbk-accent-dark) !important;
@@ -107,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Card */
 .card {
-    border: 1px solid #EDE3D9;
+    border: 1px solid #ede3d9;
     border-radius: 0.85rem;
     background-color: #ffffff;
     box-shadow: 0 1px 6px rgba(51, 38, 31, 0.05);
@@ -115,22 +122,35 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-header {
     background-color: #ffffff;
-    border-bottom: 1px solid #EDE3D9;
+    border-bottom: 1px solid #ede3d9;
     font-size: 1.05rem;
 }
 
 /* Badge - warna solid, kontras aman */
-.badge.bg-success { background-color: var(--dbk-sage) !important; }
-.badge.bg-warning { background-color: var(--dbk-gold) !important; color: #fff !important; }
-.badge.bg-danger  { background-color: #B03A2E !important; }
-.badge.bg-secondary { background-color: #D8C7B8 !important; color: var(--dbk-dark) !important; }
-.badge.bg-dark { background-color: var(--dbk-dark) !important; }
+.badge.bg-success {
+    background-color: var(--dbk-sage) !important;
+}
+.badge.bg-warning {
+    background-color: var(--dbk-gold) !important;
+    color: #fff !important;
+}
+.badge.bg-danger {
+    background-color: #b03a2e !important;
+}
+.badge.bg-secondary {
+    background-color: #d8c7b8 !important;
+    color: var(--dbk-dark) !important;
+}
+.badge.bg-dark {
+    background-color: var(--dbk-dark) !important;
+}
 
 /* ===== Tabel: font lebih besar & lega, sesuai request ===== */
 .table {
     font-size: 1.05rem;
 }
-.table th, .table td {
+.table th,
+.table td {
     padding: 1rem 1.1rem;
     vertical-align: middle;
 }
@@ -140,7 +160,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     font-size: 1rem;
 }
-.table-sm th, .table-sm td {
+.table-sm th,
+.table-sm td {
     padding: 0.75rem 0.9rem;
     font-size: 1rem;
 }
@@ -155,7 +176,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Grid produk POS */
 .product-card {
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
     cursor: default;
 }
 .product-card:not(.opacity-50):hover {
@@ -169,7 +192,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .login-card {
-    border: 1px solid #EDE3D9;
+    border: 1px solid #ede3d9;
     border-radius: 1rem;
     background-color: #ffffff;
     box-shadow: 0 8px 28px rgba(51, 38, 31, 0.08);
@@ -177,7 +200,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dashboard stat cards */
 .stat-card {
-    border: 1px solid #EDE3D9;
+    border: 1px solid #ede3d9;
     border-left: 4px solid var(--dbk-accent);
     border-radius: 0.75rem;
     background-color: #ffffff;
@@ -188,7 +211,10 @@ h1, h2, h3, h4, h5, h6 {
 .btn {
     font-weight: 500;
     border-radius: var(--bs-border-radius);
-    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background-color 0.12s ease;
 }
 
 .btn:hover {
@@ -222,38 +248,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 .btn-warning:hover,
 .btn-warning:focus {
-    background-color: #A66C2F;
-    border-color: #A66C2F;
+    background-color: #a66c2f;
+    border-color: #a66c2f;
     color: #fff;
 }
 
 .btn-danger {
-    background-color: #B03A2E;
-    border-color: #B03A2E;
+    background-color: #b03a2e;
+    border-color: #b03a2e;
 }
 .btn-danger:hover,
 .btn-danger:focus {
-    background-color: #8F2E24;
-    border-color: #8F2E24;
+    background-color: #8f2e24;
+    border-color: #8f2e24;
 }
 
 .btn-outline-danger {
-    color: #B03A2E;
-    border-color: #B03A2E;
+    color: #b03a2e;
+    border-color: #b03a2e;
 }
 .btn-outline-danger:hover {
-    background-color: #B03A2E;
-    border-color: #B03A2E;
+    background-color: #b03a2e;
+    border-color: #b03a2e;
 }
 
 .btn-secondary {
-    background-color: #8C7A6B;
-    border-color: #8C7A6B;
+    background-color: #8c7a6b;
+    border-color: #8c7a6b;
 }
 .btn-secondary:hover,
 .btn-secondary:focus {
-    background-color: #705F52;
-    border-color: #705F52;
+    background-color: #705f52;
+    border-color: #705f52;
 }
 
 /* Jarak antar tombol aksi di tabel, biar lega */
@@ -263,16 +289,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Alert senada tema */
 .alert-success {
-    background-color: #EAF1E4;
-    border: 1px solid #C6D9B8;
-    color: #4A5E3D;
+    background-color: #eaf1e4;
+    border: 1px solid #c6d9b8;
+    color: #4a5e3d;
     border-radius: 0.6rem;
 }
 
 .alert-danger {
-    background-color: #F7E3DF;
-    border: 1px solid #E3B3A8;
-    color: #8F3A2C;
+    background-color: #f7e3df;
+    border: 1px solid #e3b3a8;
+    color: #8f3a2c;
     border-radius: 0.6rem;
 }
 
@@ -296,7 +322,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== Pagination - senada tema ===== */
 .pagination .page-link {
     color: var(--dbk-accent-dark);
-    border: 1px solid #EDE3D9;
+    border: 1px solid #ede3d9;
     border-radius: 0.5rem;
     margin: 0 3px;
     padding: 0.5rem 0.9rem;
@@ -314,13 +340,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination .page-item.disabled .page-link {
-    color: #B8ACA0;
+    color: #b8aca0;
     background-color: transparent;
 }
 
 /* User menu di navbar */
 .user-menu-btn {
-    border: 1px solid #EDE3D9;
+    border: 1px solid #ede3d9;
     border-radius: 2rem;
     padding: 0.35rem 0.9rem 0.35rem 0.35rem;
     background-color: #fff;
@@ -347,7 +373,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dropdown-menu {
-    border: 1px solid #EDE3D9;
+    border: 1px solid #ede3d9;
     border-radius: 0.75rem;
     box-shadow: 0 6px 20px rgba(51, 38, 31, 0.1);
 }
@@ -356,7 +382,7 @@ h1, h2, h3, h4, h5, h6 {
 .empty-state {
     padding: 2.5rem 1rem;
     text-align: center;
-    color: #A89A8C;
+    color: #a89a8c;
 }
 .empty-state i {
     font-size: 2.5rem;
@@ -369,13 +395,13 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: 8px;
     right: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Kontrol qty + tombol nyatu jadi 1 kesatuan */
 .qty-stepper {
     display: flex;
-    border: 1px solid #EDE3D9;
+    border: 1px solid #ede3d9;
     border-radius: 0.6rem;
     overflow: hidden;
 }
@@ -398,4 +424,61 @@ h1, h2, h3, h4, h5, h6 {
 .product-card .card-body {
     display: flex;
     flex-direction: column;
+}
+
+/* Input file (upload foto) senada tema */
+.form-control[type="file"]::file-selector-button {
+    background-color: var(--dbk-cream);
+    color: var(--dbk-accent-dark);
+    border: none;
+    border-right: 1px solid #ede3d9;
+    padding: 0.5rem 1rem;
+    margin: -0.5rem -0.85rem;
+    margin-inline-end: 0.85rem;
+    border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+}
+.form-control[type="file"]::file-selector-button:hover {
+    background-color: #ede3d9;
+}
+
+/* Hover highlight baris tabel */
+.table tbody tr {
+    transition: background-color 0.1s ease;
+}
+.table tbody tr:hover {
+    background-color: var(--dbk-cream);
+}
+
+/* Scrollbar custom, senada tema (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--dbk-cream);
+}
+::-webkit-scrollbar-thumb {
+    background: #d9c6b5;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dbk-accent);
+}
+
+/* Animasi halus saat konten halaman muncul */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container.mx-auto > .mt-4 {
+    animation: fadeInUp 0.35s ease;
 }

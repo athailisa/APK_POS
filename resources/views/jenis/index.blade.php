@@ -12,11 +12,21 @@
 </div>
 @endif
 
-@can('create', App\Models\Jenis::class)
-<div class="mb-3">
-    <a href="{{ route('jenis.create') }}" class="btn btn-primary">Tambah Jenis</a>
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    @can('create', App\Models\Jenis::class)
+    <a href="{{ route('jenis.create') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> Tambah Jenis
+    </a>
+    @endcan
+
+    <form method="GET" action="{{ route('jenis.index') }}" style="min-width: 260px;">
+        <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+            <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                placeholder="Cari nama jenis...">
+        </div>
+    </form>
 </div>
-@endcan
 
 <div class="table-responsive">
     <table class="table align-middle">
@@ -54,12 +64,12 @@
             </tr>
             @empty
             <tr>
-            <td colspan="3">
-                <div class="empty-state">
-                    <i class="bi bi-inbox"></i>
-                    Belum ada jenis produk yang ditambahkan.
-                </div>
-            </td>
+                <td colspan="3">
+                    <div class="empty-state">
+                        <i class="bi bi-inbox"></i>
+                        Belum ada jenis produk yang ditambahkan.
+                    </div>
+                </td>
             </tr>
             @endforelse
         </tbody>

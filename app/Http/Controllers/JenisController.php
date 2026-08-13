@@ -10,11 +10,18 @@ class JenisController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Jenis::class);
 
-        $jenisList = Jenis::orderBy('nama')->paginate(10);
+        $keyword = $request->input('search');
+
+        $jenisList = Jenis::when($keyword, function ($query) use ($keyword) {
+                $query->where('nama', 'like', '%' . $keyword . '%');
+            })
+            ->orderBy('nama')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('jenis.index', compact('jenisList'));
     }

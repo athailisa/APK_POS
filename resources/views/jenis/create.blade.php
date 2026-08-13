@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="mb-4">
-    <h3 class="fw-bold mb-0">Tambah Jenis</h3>
+    <h3 class="fw-bold mb-0"><i class="bi bi-tags"></i> Tambah Jenis </h3>
     <a href="{{ route('jenis.index') }}" class="text-decoration-none">
         <i class="bi bi-arrow-left"></i> Kembali ke daftar jenis
     </a>

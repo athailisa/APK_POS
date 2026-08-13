@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="mb-4">
-    <h4 class="fw-bold mb-0">Tambah User</h4>
-    <a href="{{ route('admin.users') }}" class="text-decoration-none">
+    <h4 class="fw-bold mb-0"><i class="bi bi-person-plus"></i> Tambah User</h4> <a href="{{ route('admin.users') }}"
+        class="text-decoration-none">
         <i class="bi bi-arrow-left"></i> Kembali ke daftar user
     </a>
 </div>

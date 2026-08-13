@@ -31,8 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin,kasir')->group(function (){
         Route::resource('/produk', ProdukController::class);
-        Route::resource('/jenis', JenisController::class);
-        Route::put('/penjualan/{penjualan}/checkout', [PenjualanController::class, 'update'])->name('penjualan.checkout');
+        Route::resource('/jenis', JenisController::class)->parameters(['jenis' => 'jenis']);        Route::put('/penjualan/{penjualan}/checkout', [PenjualanController::class, 'update'])->name('penjualan.checkout');
         Route::resource('/penjualan', PenjualanController::class);
         Route::resource('/itempenjualan', ItemPenjualanController::class);
     });
