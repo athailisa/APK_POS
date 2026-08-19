@@ -5,10 +5,7 @@
 @section('content')
 
 <div class="mb-4">
-    <h4 class="fw-bold mb-0"><i class="bi bi-person-gear"></i> Edit User</h4> <a href="{{ route('admin.users') }}"
-        class="text-decoration-none">
-        <i class="bi bi-arrow-left"></i> Kembali ke daftar user
-    </a>
+    <h4 class="fw-bold mb-0"><i class="bi bi-person-gear"></i> Edit User</h4>
 </div>
 
 <div class="card" style="max-width: 500px;">

@@ -17,10 +17,12 @@ class DashboardController extends Controller
     public function index()
     {
         $ringkasan = $this->laporanService->ringkasanHariIni();
+        $ringkasanBulan = $this->laporanService->ringkasanBulanIni();
 
         return view('dashboard', [
             'tanggalHariIni' => Carbon::now(),
             'ringkasan' => $ringkasan,
+            'ringkasanBulan' => $ringkasanBulan,
             'produkTerlaris' => $this->laporanService->produkTerlarisHariIni(),
             'produkStokRendah' => $this->stokService->produkStokRendah(),
             'produkStokHabis' => $this->stokService->produkStokHabis(),

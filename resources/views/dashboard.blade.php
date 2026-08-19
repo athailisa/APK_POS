@@ -48,7 +48,47 @@
         </div>
     </div>
 </div>
+<div class="mb-2 mt-4">
+    <h5 class="fw-bold mb-0">Ringkasan Bulan Ini</h5>
+    <p class="text-muted small">{{ \Carbon\Carbon::now()->locale('id')->isoFormat('MMMM YYYY') }}</p>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1"><i class="bi bi-cash-coin me-1"></i>Total Penjualan</div>
+                <h4 class="fw-bold mb-0">Rp {{ number_format($ringkasanBulan['total_penjualan']) }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1"><i class="bi bi-receipt me-1"></i>Jumlah Transaksi</div>
+                <h4 class="fw-bold mb-0">{{ number_format($ringkasanBulan['total_transaksi']) }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1"><i class="bi bi-wallet2 me-1"></i>Pembayaran Tunai</div>
+                <h4 class="fw-bold mb-0">Rp {{ number_format($ringkasanBulan['total_cash']) }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1"><i class="bi bi-qr-code me-1"></i>Pembayaran Non-Tunai</div>
+                <h4 class="fw-bold mb-0">Rp {{ number_format($ringkasanBulan['total_non_tunai']) }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
 @endif
+
 <!-- 2. KUNCI PENUTUP: BATAS AKHIR KEUANGAN YANG DISEMBUNYIKAN DARI KASIR -->
 
 <!-- CRITICAL INVENTORY (BISA DILIHAT ADMIN & KASIR) -->

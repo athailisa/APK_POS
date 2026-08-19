@@ -12,15 +12,19 @@
 
 <h1><i class="bi bi-receipt"></i> Halaman Penjualan</h1>
 
-<a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <a href="{{ route('penjualan.create') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> Transaksi Baru
+    </a>
 
-<form action="{{ route('penjualan.index') }}" method="GET" class="mb-3">
-    <div class="input-group" style="max-width: 400px;">
-        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-        <input type="text" name="search" value="{{ request()->search }}" class="form-control"
-            placeholder="Cari nama kasir...">
-    </div>
-</form>
+    <form action="{{ route('penjualan.index') }}" method="GET" style="min-width: 260px;">
+        <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+            <input type="text" name="search" value="{{ request()->search }}" class="form-control"
+                placeholder="Cari nama kasir...">
+        </div>
+    </form>
+</div>
 
 <div class="table-responsive">
     <table class="table align-middle">
@@ -48,7 +52,6 @@
                     {{ $item->produk->nama }} ({{ $item->kuantitas }})@if(!$loop->last), @endif
                     @endforeach
                 </td>
-                </td>
                 <td>Rp. {{ number_format($sale->total_pembayaran) }}</td>
                 <td>
                     <span class="badge {{ $sale->metode_pembayaran === 'CASH' ? 'bg-secondary' : 'bg-dark' }}">
@@ -62,26 +65,28 @@
                     </span>
                 </td>
 
-                <td style="width: 240px; min-width: 240px;">
-                    <div class="d-flex align-items-center gap-1">
-                        <div class="d-flex align-items-center gap-1">
-                            <a href="{{ route('penjualan.show', $sale->id) }}" class="btn btn-sm btn-primary"><i
-                                    class="bi bi-eye"></i> Detail</a>
-                            @can('view', $sale)
-                            <a href="{{ route('penjualan.edit', $sale->id) }}" class="btn btn-sm btn-warning"><i
-                                    class="bi bi-pencil"></i> Edit</a>
-                            @endcan
-                            @can('delete', $sale)
-                            <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
-                                    <i class="bi bi-trash"></i> Hapus
-                                </button>
-                            </form>
-                            @endcan
-                        </div>
+                <td style="width: 140px; min-width: 140px;">
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="{{ route('penjualan.show', $sale->id) }}" class="btn-icon btn-icon-primary"
+                            title="Detail" data-bs-toggle="tooltip">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        @can('view', $sale)
+                        <a href="{{ route('penjualan.edit', $sale->id) }}" class="btn-icon btn-icon-warning"
+                            title="Edit" data-bs-toggle="tooltip">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        @endcan
+                        @can('delete', $sale)
+                        <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn-icon btn-icon-danger" title="Hapus" data-bs-toggle="tooltip"
+                                onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                        @endcan
                     </div>
                 </td>
 

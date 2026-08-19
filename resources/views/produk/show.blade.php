@@ -6,9 +6,6 @@
 
 <div class="mb-4">
     <h3 class="fw-bold mb-0">Detail Produk</h3>
-    <a href="{{ route('produk.index') }}" class="text-decoration-none">
-        <i class="bi bi-arrow-left"></i> Kembali ke daftar produk
-    </a>
 </div>
 
 <div class="card" style="max-width: 600px;">

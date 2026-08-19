@@ -51,16 +51,17 @@
                             </span>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center gap-1">
-                                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-warning">
-                                    <i class="bi bi-pencil"></i> Edit
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn-icon btn-icon-warning"
+                                    title="Edit" data-bs-toggle="tooltip">
+                                    <i class="bi bi-pencil"></i>
                                 </a>
                                 <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-danger"
+                                    <button class="btn-icon btn-icon-danger" title="Hapus" data-bs-toggle="tooltip"
                                         onclick="return confirm('Yakin hapus user ini?')">
-                                        <i class="bi bi-trash"></i> Hapus
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                             </div>
@@ -68,12 +69,12 @@
                     </tr>
                     @empty
                     <tr>
-                    <td colspan="5">
-                        <div class="empty-state">
-                            <i class="bi bi-inbox"></i>
-                            Tidak ada user ditemukan.
-                        </div>
-                    </td>                
+                        <td colspan="5">
+                            <div class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                Tidak ada user ditemukan.
+                            </div>
+                        </td>
                     </tr>
                     @endforelse
                 </tbody>

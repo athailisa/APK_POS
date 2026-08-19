@@ -43,19 +43,21 @@
                 <th scope="row">{{ $jenisList->firstItem() + $loop->index }}</th>
                 <td>{{ $jenis->nama }}</td>
                 <td class="align-middle">
-                    <div class="d-flex align-items-center justify-content-center gap-1 py-1">
+                    <div class="d-flex align-items-center justify-content-center gap-2 py-1">
                         @can('update', $jenis)
-                        <a href="{{ route('jenis.edit', $jenis->id) }}" class="btn btn-sm btn-warning"><i
-                                class="bi bi-pencil"></i> Edit</a>
+                        <a href="{{ route('jenis.edit', $jenis->id) }}" class="btn-icon btn-icon-warning" title="Edit"
+                            data-bs-toggle="tooltip">
+                            <i class="bi bi-pencil"></i>
+                        </a>
                         @endcan
 
                         @can('delete', $jenis)
                         <form action="{{ route('jenis.destroy', $jenis->id) }}" method="POST" class="d-inline m-0">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm btn-danger"
+                            <button class="btn-icon btn-icon-danger" title="Hapus" data-bs-toggle="tooltip"
                                 onclick="return confirm('Apakah anda yakin akan menghapus jenis ini?')">
-                                <i class="bi bi-trash"></i> Hapus
+                                <i class="bi bi-trash"></i>
                             </button>
                         </form>
                         @endcan

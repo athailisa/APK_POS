@@ -170,6 +170,10 @@
                     </button>
                 </form>
                 @endcan
+
+                <a href="{{ route('penjualan.index') }}" class="btn btn-secondary w-100 mt-2">
+                    Kembali
+                </a>
             </div> {{-- Tutup card-footer --}}
         </div> {{-- Tutup card keranjang --}}
     </div> {{-- Tutup col-md-6 keranjang --}}
