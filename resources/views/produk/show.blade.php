@@ -6,6 +6,7 @@
 
 <div class="mb-4">
     <h3 class="fw-bold mb-0">Detail Produk</h3>
+    <a href="{{ route('penjualan.index') }}" class="btn btn-secondary">Kembali</a>
 </div>
 
 <div class="card" style="max-width: 600px;">
