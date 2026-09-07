@@ -37,6 +37,7 @@
                     <div class="col-6">
                         <form method="POST" action="{{ route('itempenjualan.store') }}" class="h-100">
                             @csrf
+                            <input type="hidden" name="penjualan_id" value="{{ $sale->id }}">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                             <div

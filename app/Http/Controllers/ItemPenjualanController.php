@@ -6,7 +6,6 @@ use App\Models\ItemPenjualan;
 use App\Models\Penjualan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ItemPenjualanController extends Controller
@@ -33,16 +32,22 @@ class ItemPenjualanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'penjualan_id' => 'required|exists:penjualan,id',
             'product_id' => 'required|exists:produk,id',
             'quantity' => 'required|integer|min:1'
         ]);
 
-        try {
-            DB::transaction(function () use ($request) {
+        // Ambil transaksi yang SEDANG dibuka di halaman (create/edit),
+        // bukan asal ambil transaksi OPEN milik user yang login.
+        $sale = Penjualan::findOrFail($request->penjualan_id);
 
-                $sale = Penjualan::where('user_id', Auth::id())
-                    ->where('status', 'OPEN')
-                    ->firstOrFail();
+        // authorize() sekaligus memastikan hanya pemilik transaksi/admin
+        // yang boleh menambah item, dan status transaksi masih OPEN
+        // (lihat PenjualanPolicy::update).
+        $this->authorize('update', $sale);
+
+        try {
+            DB::transaction(function () use ($request, $sale) {
 
                 $product = Produk::lockForUpdate()->findOrFail($request->product_id);
 

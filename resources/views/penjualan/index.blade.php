@@ -71,7 +71,7 @@
                             title="Detail" data-bs-toggle="tooltip">
                             <i class="bi bi-eye"></i>
                         </a>
-                        @can('view', $sale)
+                        @can('update', $sale)
                         <a href="{{ route('penjualan.edit', $sale->id) }}" class="btn-icon btn-icon-warning"
                             title="Edit" data-bs-toggle="tooltip">
                             <i class="bi bi-pencil"></i>

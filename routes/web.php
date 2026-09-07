@@ -9,6 +9,11 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ItemPenjualanController;
 use App\Http\Controllers\PenjualanController;
 
+// Halaman utama: alihkan ke dashboard (kalau sudah login) atau ke login (kalau belum)
+Route::get('/', function () {
+    return redirect()->route(auth()->check() ? 'dashboard' : 'login');
+});
+
 // Route yang bisa diakses ketika user BELUM login
 Route::middleware('guest')->group(function() {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
