@@ -142,41 +142,108 @@
                     <strong class="fs-5">Rp {{ number_format($sale->total_pembayaran) }}</strong>
                 </div>
 
-                {{-- Form Checkout Selesai Transaksi --}}
-                <form method="POST" action="{{ route('penjualan.checkout', $sale->id) }}"
-                    onsubmit="return confirm('Yakin ingin checkout?')" class="mt-2">
-                    @csrf
-                    @method('PUT')
+ {{-- ================== FORM CHECKOUT ================== --}}
+<form method="POST" action="{{ route('penjualan.update', $sale->id) }}"
+    onsubmit="return confirm('Yakin ingin checkout?');" id="checkoutForm"
+    data-total="{{ $sale->total_pembayaran }}">
+    @csrf
+    @method('PUT')
 
-                    <select name="payment_method" class="form-select mb-2" required>
-                        <option value="">Pilih Pembayaran</option>
-                        <option value="CASH">Cash</option>
-                        <option value="QRIS">QRIS</option>
-                    </select>
-                    <button type="submit"
-                        class="btn btn-success w-100 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
-                        Checkout
-                    </button>
-                </form>
+    <select name="payment_method" id="paymentMethod" class="form-select mb-3 @error('payment_method') is-invalid @enderror">
+        <option value="">Pilih Pembayaran</option>
+        <option value="CASH" {{ old('payment_method') === 'CASH' ? 'selected' : '' }}>Cash</option>
+        <option value="QRIS" {{ old('payment_method') === 'QRIS' ? 'selected' : '' }}>QRIS</option>
+        <option value="BAYAR_NANTI" {{ old('payment_method') === 'BAYAR_NANTI' ? 'selected' : '' }}>Bayar Nanti</option>
+    </select>
+    @error('payment_method')
+        <div class="text-danger small mb-2">{{ $message }}</div>
+    @enderror
 
-                {{-- Form Batalkan Transaksi --}}
-                @can('delete', $sale)
-                <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST"
-                    onsubmit="return confirm('Yakin ingin membatalkan transaksi?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                        class="btn btn-outline-danger w-100 mt-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
-                        Batalkan Transaksi
-                    </button>
-                </form>
-                @endcan
+    {{-- Wrapper Input Cash --}}
+    <div id="cashInputWrapper" class="mb-3 d-none">
+        <label class="form-label small fw-semibold">Uang Dibayar</label>
+        <input type="text" inputmode="numeric" name="uang_dibayar" id="uangDibayar"
+        class="form-control mb-2 @error('uang_dibayar') is-invalid @enderror"
+        placeholder="Masukkan jumlah uang tunai"
+        value="{{ old('uang_dibayar') }}"
+        autocomplete="off">
+        @error('uang_dibayar')
+            <div class="text-danger small mb-2">{{ $message }}</div>
+        @enderror
 
-                <a href="{{ route('penjualan.index') }}" class="btn btn-secondary w-100 mt-2">
-                    Kembali
-                </a>
-            </div> {{-- Tutup card-footer --}}
-        </div> {{-- Tutup card keranjang --}}
-    </div> {{-- Tutup col-md-6 keranjang --}}
-</div> {{-- TUTUP INDUK UTAMA ROW DI PALING BAWAH --}}
+        <label class="form-label small fw-semibold">Kembalian</label>
+        <input type="text" id="kembalianDisplay" class="form-control" readonly value="Rp 0">
+        <div id="kurangInfo" class="text-danger small mt-1 d-none"></div>
+        <input type="hidden" name="kembalian" id="kembalianInput" value="0">
+    </div>
+
+    {{-- Wrapper Info QRIS --}}
+    <div id="qrisInfoWrapper" class="mb-3 d-none">
+        <div class="card bg-light border-0 p-3 text-center">
+            <span class="small fw-semibold text-muted mb-2">Scan QRIS di bawah ini:</span>
+            <img src="{{ asset('images/qr code.png') }}" alt="QRIS Code" class="img-fluid mx-auto mb-2" style="max-height: 180px;">
+            <span class="small text-secondary">Silakan scan menggunakan aplikasi e-wallet atau m-banking.</span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100 py-2 fw-semibold {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
+        Checkout
+    </button>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const paymentMethod = document.getElementById('paymentMethod');
+    const cashInputWrapper = document.getElementById('cashInputWrapper');
+    const qrisInfoWrapper = document.getElementById('qrisInfoWrapper');
+    const uangDibayar = document.getElementById('uangDibayar');
+    const kembalianDisplay = document.getElementById('kembalianDisplay');
+    const kembalianInput = document.getElementById('kembalianInput');
+    const kurangInfo = document.getElementById('kurangInfo');
+    const checkoutForm = document.getElementById('checkoutForm');
+    
+    if (!paymentMethod) return;
+
+    const total = parseFloat(checkoutForm.dataset.total) || 0;
+
+    function togglePaymentInputs() {
+        // Logika untuk Cash
+        if (paymentMethod.value === 'CASH') {
+            cashInputWrapper.classList.remove('d-none');
+        } else {
+            cashInputWrapper.classList.add('d-none');
+            if (uangDibayar) uangDibayar.value = '';
+        }
+
+        // Logika untuk QRIS
+        if (paymentMethod.value === 'QRIS') {
+            qrisInfoWrapper.classList.remove('d-none');
+        } else {
+            qrisInfoWrapper.classList.add('d-none');
+        }
+    }
+
+    paymentMethod.addEventListener('change', togglePaymentInputs);
+    togglePaymentInputs(); // Jalankan saat halaman dimuat
+
+    if (uangDibayar) {
+        uangDibayar.addEventListener('input', function () {
+            let val = parseFloat(this.value.replace(/[^0-9]/g, '')) || 0;
+            let kembalian = val - total;
+
+            if (val < total && val > 0) {
+                kurangInfo.textContent = 'Uang tunai kurang dari total pembayaran!';
+                kurangInfo.classList.remove('d-none');
+                kembalianDisplay.value = 'Rp 0';
+                kembalianInput.value = 0;
+            } else {
+                kurangInfo.classList.add('d-none');
+                let kembalianFinal = val >= total ? kembalian : 0;
+                kembalianDisplay.value = 'Rp ' + kembalianFinal.toLocaleString('id-ID');
+                kembalianInput.value = kembalianFinal;
+            }
+        });
+    }
+});
+</script>
 @endsection

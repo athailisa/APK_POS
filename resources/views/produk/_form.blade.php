@@ -58,7 +58,7 @@
 </div>
 
 <div> 
-    <label>Harga Beli</label><br> 
+    <label>Harga Modal</label><br> 
     <!-- name dikembalikan ke 'purchase_price' sesuai isi Controller -->
     <input type="number" name="purchase_price" class="form-control @error('purchase_price') is-invalid @enderror" value="{{ old('purchase_price', $produk->harga_beli ?? '') }}"> 
     @error('purchase_price') 

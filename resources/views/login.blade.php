@@ -10,11 +10,12 @@
 <div class="login-wrapper d-flex align-items-center justify-content-center">
     <div class="card login-card text-center" style="width: 22rem;">
         <div class="card-body p-4">
-            <div class="mb-3">
-                <i class="bi bi-cup-hot-fill" style="font-size: 2.5rem; color: var(--dbk-accent-dark);"></i>
-            </div>
-            <h5 class="mb-1 fw-bold" style="color:var(--dbk-accent-dark);">Selamat Datang</h5>
-            <p class="text-muted small mb-4">Masuk ke akun POS kamu</p>
+           <div class="mb-3">
+    <i class="bi bi-cup-hot-fill" style="font-size: 2.5rem; color: var(--dbk-accent-dark);"></i>
+</div>
+<h4 class="mb-1 fw-bold" style="color:var(--dbk-accent-dark); letter-spacing: .5px;">Kedai Kita</h4>
+<p class="text-muted small mb-3">Point of Sale</p>
+<h5 class="mb-1 fw-bold" style="color:var(--dbk-accent-dark);">Selamat Datang</h5>
 
             <form action="{{ route('auth') }}" method="POST" class="text-start">
                 @csrf
